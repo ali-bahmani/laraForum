@@ -26,6 +26,18 @@ class AuthController extends Controller
             'password'=>Hash::make($request->password)
         ]);
 
+        //return $user;
+
+        $superAdminEmail = config('permission.default_super_admin');
+
+        $user->email == $superAdminEmail ? $user->assignRole('Super Admin') : $user->assignRole('User');
+            // if($user->email == $superAdminEmail){
+            //     $user->assignRole('Super Admin');
+            //     $user->assignRole('Super Admin');
+            // }else{
+            //     $user->assignRole('User');
+            // }
+
         return response()->json([
             'message' => 'New user created successfully'
         ], 201);
