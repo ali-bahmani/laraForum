@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use \Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as faker;
 
 class RoleFactory extends Factory
 {
@@ -12,17 +13,16 @@ class RoleFactory extends Factory
      *
      * @var string
      */
-    protected $model = Model::class;
-
+    protected $model = Role::class;
     /**
      * Define the model's default state.
      *
      * @return array
      */
-    public function definition()
+    public function definition($model,faker $faker)
     {
         return [
-            //
+            'name' => $faker->name
         ];
     }
 }
